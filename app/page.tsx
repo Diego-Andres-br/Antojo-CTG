@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./globals.css";
 
-const WHATSAPP_NUMBER = "573045732744";
+const WHATSAPP_NUMBER = "573107518438";
 const isOpen = () => {
   const hour = new Date().getHours();
   return hour >= 17 && hour < 22;
@@ -169,10 +169,10 @@ const sendWhatsApp = () => {
   if (payMethod === "bold") {
     window.open("https://checkout.bold.co/payment/LNK_EMZU6WEN6T", "_blank");
     setTimeout(() => {
-      window.location.href = `https://wa.me/573010751843?text=${encodeURIComponent(msg)}`;
+      window.location.href = `https://wa.me/5730107518438?text=${encodeURIComponent(msg)}`;
     }, 1500);
   } else {
-    window.location.href = `https://wa.me/573010751843?text=${encodeURIComponent(msg)}`;
+    window.location.href = `https://wa.me/5730107518438?text=${encodeURIComponent(msg)}`;
   }
 };
 
