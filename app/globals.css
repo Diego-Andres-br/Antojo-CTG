@@ -517,3 +517,243 @@ textarea:focus {
     display: none;
   }
 }
+
+/* BOTONES FLOTANTES */
+.flotantes {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 200;
+}
+
+.flotante {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flotante:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.whatsapp { background: #25D366; }
+.instagram { background: #E1306C; }
+.facebook { background: #1877F2; }
+
+/* HEADER REDISEÑADO */
+.site-header {
+  background: white;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 16px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #C0392B;
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  flex-shrink: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #7D5A3C;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #C0392B;
+  transition: width 0.2s ease;
+}
+
+.nav-link:hover::after { width: 100%; }
+.nav-link:hover { color: #C0392B; }
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #F39C12;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ZONA DE COBERTURA */
+.cobertura-section {
+  background: #2A1A0E;
+  padding: 64px 24px;
+}
+
+.barrios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.barrio-chip {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.barrio-chip:hover {
+  background: rgba(192,57,43,0.3);
+  border-color: #C0392B;
+  color: white;
+}
+
+/* HORARIO */
+.horario-section {
+  background: #FDF8F0;
+  padding: 64px 24px;
+}
+
+.horario-grid {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.horario-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.horario-item:hover {
+  transform: translateX(4px);
+}
+
+.horario-item.cerrado {
+  opacity: 0.5;
+}
+
+.horario-dia {
+  font-weight: 700;
+  color: #2A1A0E;
+  font-size: 14px;
+  width: 100px;
+}
+
+.horario-hora {
+  color: #7D5A3C;
+  font-size: 14px;
+  flex: 1;
+  text-align: center;
+}
+
+.horario-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+}
+
+.badge-abierto {
+  background: #E8F8EF;
+  color: #27AE60;
+}
+
+.badge-cerrado {
+  background: #F8E8E8;
+  color: #E74C3C;
+}
+
+/* ANIMACIONES SCROLL */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .header-nav { display: none; }
+
+  .flotante {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .horario-dia { width: 80px; }
+  .horario-hora { font-size: 12px; }
+}

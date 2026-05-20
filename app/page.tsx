@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FaWhatsapp, FaInstagram, FaFacebookF, FaMapMarkerAlt } from "react-icons/fa";
+
 
 
 const WHATSAPP_NUMBER = "573107518438";
@@ -108,6 +110,15 @@ export default function Home() {
   const [notes, setNotes] = useState("");
   const [payMethod, setPayMethod] = useState("efectivo");
 
+useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const filtered =
     activeCategory === "todos"
       ? products
@@ -178,38 +189,30 @@ const sendWhatsApp = () => {
 
   return (
     <div>
-      {/* ── HEADER ── */}
-      {isOpen() ? (
-  <div style={{ background: "#27AE60", color: "white", textAlign: "center", padding: "8px", fontSize: 13, fontWeight: 700, letterSpacing: 1 }}>
-    🟢 ¡Estamos abiertos! Pedidos hasta las 10pm
+<header className="site-header">
+  <div className="header-logo">
+    <div className="logo-circle">A</div>
+    <div>
+      <div style={{ fontSize: 20, fontWeight: 900, color: "#C0392B", lineHeight: 1, fontFamily: "Playfair Display, serif" }}>
+        Antojo CTG
+      </div>
+      <div style={{ fontSize: 10, color: "#7D5A3C", letterSpacing: 2, textTransform: "uppercase" }}>
+        Cartagena · Domicilios
+      </div>
+    </div>
   </div>
-) : (
-  <div style={{ background: "#E74C3C", color: "white", textAlign: "center", padding: "8px", fontSize: 13, fontWeight: 700, letterSpacing: 1 }}>
-    🔴 Cerrado ahora · Abrimos hoy a las 5pm
-  </div>
-)}
-      <header className="site-header">
-        <div>
-          <div className="hero-title" style={{ fontSize: 24, fontWeight: 900, color: "#C0392B", lineHeight: 1 }}>
-            Antojo CTG
-          </div>
-          <div style={{ fontSize: 11, color: "#7D5A3C", letterSpacing: 2, textTransform: "uppercase" }}>
-            Cartagena · Pedidos a domicilio
-          </div>
-        </div>
-        <button
-          className="btn-primary"
-          onClick={() => setShowCart(true)}
-          style={{ position: "relative", padding: "10px 20px" }}
-        >
-          🛒 Mi pedido
-          {cartCount > 0 && (
-            <span style={{ position: "absolute", top: -6, right: -6, background: "#F39C12", color: "white", borderRadius: "50%", width: 22, height: 22, fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              {cartCount}
-            </span>
-          )}
-        </button>
-      </header>
+  <nav className="header-nav">
+    <a href="#menu" className="nav-link">Menú</a>
+    <a href="#como-pedir" className="nav-link">¿Cómo pedir?</a>
+    <a href="#testimonios" className="nav-link">Reseñas</a>
+  </nav>
+  <button className="btn-primary" onClick={() => setShowCart(true)} style={{ position: "relative", padding: "10px 20px" }}>
+    🛒 Mi pedido
+    {cartCount > 0 && (
+      <span className="cart-badge">{cartCount}</span>
+    )}
+  </button>
+</header>
 
       {/* ── BANNER OFERTA ── */}
 <div className="banner-oferta">
@@ -281,6 +284,60 @@ const sendWhatsApp = () => {
       <h3>Recibe en casa</h3>
       <p>Tu pedido llega recién hecho y a tiempo. ¡A disfrutar!</p>
     </div>
+  </div>
+</section>
+
+{/* ── ZONA DE COBERTURA ── */}
+<section className="cobertura-section">
+  <h2 className="hero-title" style={{ fontSize: 32, fontWeight: 900, color: "white", marginBottom: 8, textAlign: "center" }}>
+    ¿Llegamos a tu barrio?
+  </h2>
+  <p style={{ textAlign: "center", color: "rgba(255,255,255,0.7)", marginBottom: 40, fontSize: 15 }}>
+    Hacemos domicilios en toda Cartagena 🛵
+  </p>
+  <div className="barrios-grid">
+    {[
+      "Bocagrande", "El Laguito", "Manga", "Pie de la Popa",
+      "Getsemaní", "Centro Histórico", "Castillogrande", "El Cabrero",
+      "Crespo", "Ternera", "Villa Country", "Los Alpes"
+    ].map((barrio, i) => (
+      <div key={i} className="barrio-chip">
+        <FaMapMarkerAlt size={12} />
+        {barrio}
+      </div>
+    ))}
+  </div>
+  <p style={{ textAlign: "center", color: "rgba(255,255,255,0.5)", marginTop: 24, fontSize: 13 }}>
+    ¿No ves tu barrio? Escríbenos y verificamos cobertura 💬
+  </p>
+</section>
+
+{/* ── HORARIO ── */}
+<section className="horario-section">
+  <h2 className="hero-title" style={{ fontSize: 32, fontWeight: 900, color: "#2A1A0E", marginBottom: 8, textAlign: "center" }}>
+    Nuestro Horario
+  </h2>
+  <p style={{ textAlign: "center", color: "#7D5A3C", marginBottom: 40, fontSize: 15 }}>
+    Estamos listos para tu antojo 🍮
+  </p>
+  <div className="horario-grid">
+    {[
+      { dia: "Lunes", hora: "Cerrado", abierto: false },
+      { dia: "Martes", hora: "5:00pm – 10:00pm", abierto: true },
+      { dia: "Miércoles", hora: "5:00pm – 10:00pm", abierto: true },
+      { dia: "Jueves", hora: "5:00pm – 10:00pm", abierto: true },
+      { dia: "Viernes", hora: "5:00pm – 11:00pm", abierto: true },
+      { dia: "Sábado", hora: "3:00pm – 11:00pm", abierto: true },
+      { dia: "Domingo", hora: "3:00pm – 10:00pm", abierto: true },
+    ].map((item, i) => (
+      <div key={i} className={`horario-item ${item.abierto ? "abierto" : "cerrado"}`}>
+        <span className="horario-dia">{item.dia}</span>
+        <span className="horario-hora">{item.hora}</span>
+        <span className={`horario-badge ${item.abierto ? "badge-abierto" : "badge-cerrado"}`}>
+          {item.abierto ? "Abierto" : "Cerrado"}
+        </span>
+      </div>
+    ))}
   </div>
 </section>
 
@@ -373,7 +430,7 @@ const sendWhatsApp = () => {
       </section>
 
       {/* ── TESTIMONIOS ── */}
-<section className="testimonios-section">
+<section id="testimonios" className="testimonios-section">
   <h2 className="hero-title" style={{ fontSize: 32, fontWeight: 900, color: "#2A1A0E", marginBottom: 8, textAlign: "center" }}>
     Lo que dicen nuestros clientes
   </h2>
@@ -488,7 +545,20 @@ const sendWhatsApp = () => {
               </>
             )}
           </div>
+          {/* ── BOTONES FLOTANTES ── */}
+<div className="flotantes">
+  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" className="flotante whatsapp" aria-label="WhatsApp">
+    <FaWhatsapp />
+  </a>
+  <a href="https://www.instagram.com/antojoctg" target="_blank" rel="noopener noreferrer" className="flotante instagram" aria-label="Instagram">
+    <FaInstagram />
+  </a>
+  <a href="https://www.facebook.com/antojoctg" target="_blank" rel="noopener noreferrer" className="flotante facebook" aria-label="Facebook">
+    <FaFacebookF />
+  </a>
+</div>
         </div>
+        
       )}
     </div>
   );
