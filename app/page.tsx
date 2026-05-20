@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import "./globals.css";
+
 
 const WHATSAPP_NUMBER = "573107518438";
 const isOpen = () => {
@@ -211,25 +211,78 @@ const sendWhatsApp = () => {
         </button>
       </header>
 
-      {/* ── HERO ── */}
-      <section className="hero">
-        <div style={{ position: "relative", maxWidth: 600, margin: "0 auto" }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>🍮🍓🍟🥩</div>
-          <h1 className="hero-title" style={{ fontSize: "clamp(32px, 6vw, 56px)", fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 16 }}>
-            ¡Deliciosos antojos,<br />directo a tu puerta!
-          </h1>
-          <p style={{ fontSize: 17, color: "rgba(255,255,255,0.85)", marginBottom: 28, lineHeight: 1.6 }}>
-            Postres artesanales recién hechos y más.<br />
-            Pedidos a domicilio en Cartagena. 🛵
-          </p>
-          <button
-            className="btn-outline"
-            onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}
-          >
-            Ver menú completo ↓
-          </button>
-        </div>
-      </section>
+      {/* ── BANNER OFERTA ── */}
+<div className="banner-oferta">
+  <span>🔥 Oferta del día:</span>
+  <strong> Postre Frutos Rojos</strong>
+  <span> — Solo hoy a $7.000</span>
+  <span className="contador-entrega">⏱ Entrega estimada: 25-35 min</span>
+</div>
+
+{/* ── HERO ── */}
+<section className="hero">
+  <div className="hero-content">
+    <div className="hero-badge">🛵 Domicilios en Cartagena</div>
+    <h1 className="hero-title" style={{ fontSize: "clamp(32px, 6vw, 60px)", fontWeight: 900, color: "white", lineHeight: 1.1, marginBottom: 16 }}>
+      ¡El antojo que<br />estabas esperando!
+    </h1>
+    <p className="hero-desc">
+      Postres artesanales recién hechos.<br />
+      Rápido, rico y directo a tu puerta. 🍮
+    </p>
+    <div className="hero-stats">
+      <div className="hero-stat"><span>+100</span><p>Pedidos</p></div>
+      <div className="hero-stat-divider"></div>
+      <div className="hero-stat"><span>5★</span><p>Calificación</p></div>
+      <div className="hero-stat-divider"></div>
+      <div className="hero-stat"><span>30min</span><p>Entrega</p></div>
+    </div>
+    <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+      <button className="btn-primary" onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" })}>
+        Ver menú completo
+      </button>
+      <button className="btn-outline" onClick={() => document.getElementById("como-pedir")?.scrollIntoView({ behavior: "smooth" })}>
+        ¿Cómo pedir?
+      </button>
+    </div>
+  </div>
+</section>
+
+{/* ── CÓMO PEDIR ── */}
+<section id="como-pedir" className="como-pedir-section">
+  <h2 className="hero-title" style={{ fontSize: 32, fontWeight: 900, color: "#2A1A0E", marginBottom: 8, textAlign: "center" }}>
+    ¿Cómo hacer tu pedido?
+  </h2>
+  <p style={{ textAlign: "center", color: "#7D5A3C", marginBottom: 40, fontSize: 15 }}>
+    Fácil, rápido y sin complicaciones 🙌
+  </p>
+  <div className="pasos-grid">
+    <div className="paso-card">
+      <div className="paso-numero">1</div>
+      <div className="paso-icono">🍮</div>
+      <h3>Elige tu antojo</h3>
+      <p>Navega el menú y agrega lo que más se te antoje al carrito.</p>
+    </div>
+    <div className="paso-card">
+      <div className="paso-numero">2</div>
+      <div className="paso-icono">📋</div>
+      <h3>Ingresa tus datos</h3>
+      <p>Tu nombre, dirección y método de pago. Solo te toma 30 segundos.</p>
+    </div>
+    <div className="paso-card">
+      <div className="paso-numero">3</div>
+      <div className="paso-icono">📲</div>
+      <h3>Envía por WhatsApp</h3>
+      <p>Te redirigimos a WhatsApp con todo el pedido listo. Solo dale enviar.</p>
+    </div>
+    <div className="paso-card">
+      <div className="paso-numero">4</div>
+      <div className="paso-icono">🛵</div>
+      <h3>Recibe en casa</h3>
+      <p>Tu pedido llega recién hecho y a tiempo. ¡A disfrutar!</p>
+    </div>
+  </div>
+</section>
 
       {/* ── MENU ── */}
       <section id="menu" className="menu-section">
@@ -318,6 +371,29 @@ const sendWhatsApp = () => {
           ))}
         </div>
       </section>
+
+      {/* ── TESTIMONIOS ── */}
+<section className="testimonios-section">
+  <h2 className="hero-title" style={{ fontSize: 32, fontWeight: 900, color: "#2A1A0E", marginBottom: 8, textAlign: "center" }}>
+    Lo que dicen nuestros clientes
+  </h2>
+  <p style={{ textAlign: "center", color: "#7D5A3C", marginBottom: 40, fontSize: 15 }}>
+    ¡Más de 500 antojos satisfechos! ❤️
+  </p>
+  <div className="testimonios-grid">
+    {[
+      { nombre: "Marializ M.", texto: "El postre de frutos rojos es una locura 😍 Llegó súper rápido y recién hecho. Ya pedí 3 veces esta semana.", estrellas: 5 },
+      { nombre: "Claudia P.", texto: "El de Oreo es mi favorito. El servicio es excelente y el precio muy bueno. 100% recomendado.", estrellas: 5 },
+      { nombre: "Joel D.", texto: "Pedí para una reunión y todos quedaron felices. La atención por WhatsApp es muy rápida.", estrellas: 5 },
+    ].map((t, i) => (
+      <div key={i} className="testimonio-card">
+        <div className="testimonio-estrellas">{"★".repeat(t.estrellas)}</div>
+        <p className="testimonio-texto">"{t.texto}"</p>
+        <div className="testimonio-nombre">— {t.nombre}</div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* ── FOOTER ── */}
       <footer className="site-footer">
